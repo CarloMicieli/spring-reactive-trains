@@ -15,9 +15,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Print Java toolchain information
-        run: ./gradlew -q javaToolchains
-
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
@@ -47,9 +44,7 @@ jobs:
         uses: codecov/codecov-action@v2
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./reports/jacoco/
           fail_ci_if_error: true
-          files: ./report.xml
           verbose: true
 
       - name: Build docker image
