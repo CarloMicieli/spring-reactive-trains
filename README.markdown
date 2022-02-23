@@ -1,13 +1,13 @@
 # Spring Reactive Trains
 
-[![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)]
+![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/spring-reactive-trains)
-![Build](https://github.com/CarloMicieli/spring-reactive-trains/workflows/Build/badge.svg)
-[![Coverage Status](https://coveralls.io/repos/github/CarloMicieli/spring-reactive-trains/badge.svg?branch=main)](https://coveralls.io/github/CarloMicieli/spring-trains?branch=main)
+![Build](https://github.com/CarloMicieli/spring-reactive-trains/workflows/build/badge.svg)
+[![codecov](https://codecov.io/gh/CarloMicieli/spring-reactive-trains/branch/main/graph/badge.svg?token=4Y0V0EL0V7)](https://codecov.io/gh/CarloMicieli/spring-reactive-trains)
 
-A web api for model railway collections with `Spring Boot 2.4`.
+A web api for model railway collections with `Spring Boot 2.6`.
 
 ## Requirements
 
