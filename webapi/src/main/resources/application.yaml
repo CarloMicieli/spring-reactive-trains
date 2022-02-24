@@ -1,6 +1,16 @@
 spring:
   application:
-    name: spring-app
+    name: spring-reactive-trains
+  liquibase:
+    enabled: false
+  r2dbc:
+    url: r2dbc:${DB_URL:postgresql://localhost:5432/trainsdb}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password}
+    pool:
+      enabled: true
+      initial-size: 10
+      max-size: 50
 
 management:
   server:
@@ -21,3 +31,9 @@ management:
 context:
   initializer:
     classes: io.github.carlomicieli.BeansInitializer
+
+security:
+  jwt:
+    issuer: spring-reactive-trains
+    secret: ${JWT_SECRET:tNO+KhVrTj3B4q0+SEwz/NSvZq7y577jOjvY4uPgAR4=}
+    tokenLifetime: ${JWT_TOKEN_LIFETIME:9000}

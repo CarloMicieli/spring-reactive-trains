@@ -7,6 +7,7 @@
     </appender>
 
     <logger name="io.github.carlomicieli" level="DEBUG"/>
+    <logger name="org.springframework.security" level="DEBUG"/>
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>

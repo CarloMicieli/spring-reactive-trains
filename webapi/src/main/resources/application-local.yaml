@@ -1,0 +1,12 @@
+spring:
+  liquibase:
+    enabled: true
+    url: jdbc:${DB_URL:postgresql://localhost:5432/trainsdb}
+    user: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:password}
+
+logging:
+  level:
+    org:
+      springframework:
+        r2dbc: DEBUG

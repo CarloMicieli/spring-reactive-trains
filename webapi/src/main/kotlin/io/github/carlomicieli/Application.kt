@@ -20,10 +20,15 @@
  */
 package io.github.carlomicieli
 
+import io.github.carlomicieli.infrastructure.security.JwtConfiguration
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 
 @SpringBootApplication
+@EnableWebFluxSecurity
+@EnableConfigurationProperties(JwtConfiguration::class)
 class Application
 
 fun main(args: Array<String>) {

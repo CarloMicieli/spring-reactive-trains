@@ -39,6 +39,7 @@ jobs:
 
       - name: Kover coverage report
         run: ./gradlew koverMergedXmlReport
+        if: github.ref == 'refs/heads/main'
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
@@ -46,9 +47,11 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
           verbose: true
+        if: github.ref == 'refs/heads/main'
 
       - name: Build docker image
         run: ./gradlew bootBuildImage
+        if: github.ref == 'refs/heads/main'
 
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.

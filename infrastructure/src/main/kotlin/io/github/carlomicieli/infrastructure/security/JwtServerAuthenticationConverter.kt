@@ -18,31 +18,20 @@
  *    specific language governing permissions and limitations
  *    under the License.    
  */
-package io.github.carlomicieli
+package io.github.carlomicieli.infrastructure.security
 
-import io.github.carlomicieli.infrastructure.security.Security
-import io.github.carlomicieli.webapi.authentication.Authentication
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-import org.springframework.context.ApplicationContextInitializer
-import org.springframework.context.support.GenericApplicationContext
-import org.springframework.context.support.beans
-import java.time.Clock
+import org.springframework.http.HttpHeaders
+import org.springframework.security.core.Authentication
+import org.springframework.security.web.server.authentication.ServerAuthenticationConverter
+import org.springframework.web.server.ServerWebExchange
+import reactor.core.publisher.Mono
 
-class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext> {
-    override fun initialize(context: GenericApplicationContext) {
-        beans.initialize(context)
-        Security.beans.initialize(context)
-        Authentication.beans.initialize(context)
-    }
-}
+class JwtServerAuthenticationConverter : ServerAuthenticationConverter {
 
-val beans = beans {
-    bean<Clock>() {
-        Clock.systemDefaultZone()
-    }
-
-    bean<Logger> {
-        LoggerFactory.getLogger("spring-reactive-trains")
+    override fun convert(exchange: ServerWebExchange): Mono<Authentication> {
+        return Mono.justOrEmpty(exchange.request.headers.getFirst(HttpHeaders.AUTHORIZATION))
+            .filter { it.startsWith("Bearer ") }
+            .map { it.substring(7) }
+            .map { jwt -> BearerToken(jwt) }
     }
 }

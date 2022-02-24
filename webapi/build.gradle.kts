@@ -6,6 +6,7 @@ import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
     id("kotlin-application-conventions")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 dependencies {
@@ -19,10 +20,16 @@ dependencies {
         }
     }
 
+    kapt("org.springframework.boot:spring-boot-configuration-processor")
     implementation("com.auth0:java-jwt:3.18.3")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-hateoas")
+    implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.liquibase:liquibase-core")
+    implementation("org.springframework:spring-jdbc")
+    runtimeOnly("io.r2dbc:r2dbc-postgresql")
+    runtimeOnly("org.postgresql:postgresql")
 }
 
 testing {

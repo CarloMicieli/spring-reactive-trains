@@ -18,31 +18,18 @@
  *    specific language governing permissions and limitations
  *    under the License.    
  */
-package io.github.carlomicieli
+package io.github.carlomicieli.infrastructure.security
 
-import io.github.carlomicieli.infrastructure.security.Security
-import io.github.carlomicieli.webapi.authentication.Authentication
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-import org.springframework.context.ApplicationContextInitializer
-import org.springframework.context.support.GenericApplicationContext
-import org.springframework.context.support.beans
-import java.time.Clock
+import org.springframework.security.core.userdetails.UserDetails
 
-class BeansInitializer : ApplicationContextInitializer<GenericApplicationContext> {
-    override fun initialize(context: GenericApplicationContext) {
-        beans.initialize(context)
-        Security.beans.initialize(context)
-        Authentication.beans.initialize(context)
-    }
-}
-
-val beans = beans {
-    bean<Clock>() {
-        Clock.systemDefaultZone()
+class TestUsersService : UsersService {
+    override suspend fun findByUsername(username: String): UserDetails? = when (username) {
+        "user" -> validUser
+        "locked" -> lockedUser
+        else -> null
     }
 
-    bean<Logger> {
-        LoggerFactory.getLogger("spring-reactive-trains")
+    override suspend fun registerUser(username: String, password: String, roles: List<String>): UserDetails {
+        return TestUserDetails(username)
     }
 }
