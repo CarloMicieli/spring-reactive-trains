@@ -1,16 +1,6 @@
 spring:
   application:
     name: spring-app
-  liquibase:
-    enabled: false
-  r2dbc:
-    url: r2dbc:${DB_URL:postgresql://localhost:5432/sampledb}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:password}
-    pool:
-      enabled: true
-      initial-size: 10
-      max-size: 50
 
 management:
   server:
@@ -28,13 +18,6 @@ management:
     health:
       enabled: true
 
-logging:
-  level:
-    org:
-      springframework:
-        r2dbc: DEBUG
-
-security:
-  jwt:
-    secret: ${APP_SECRET:tNO+KhVrTj3B4q0+SEwz/NSvZq7y577jOjvY4uPgAR4=}
-    minutes: 15
+context:
+  initializer:
+    classes: io.github.carlomicieli.BeansInitializer

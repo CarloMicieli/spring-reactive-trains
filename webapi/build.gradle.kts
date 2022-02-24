@@ -2,9 +2,10 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
 import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
 import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
+import org.springframework.boot.gradle.tasks.run.BootRun
 
 plugins {
-    id("java-application-conventions")
+    id("kotlin-application-conventions")
 }
 
 dependencies {
@@ -20,15 +21,8 @@ dependencies {
 
     implementation("com.auth0:java-jwt:3.18.3")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("org.springframework.boot:spring-boot-starter-hateoas")
-    implementation("org.springframework.boot:spring-boot-starter-security")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.liquibase:liquibase-core")
-    implementation("org.springframework:spring-jdbc")
-    runtimeOnly("io.r2dbc:r2dbc-postgresql")
-    runtimeOnly("org.postgresql:postgresql")
 }
 
 testing {
@@ -43,8 +37,7 @@ testing {
 
                 implementation("org.springframework.boot:spring-boot-starter-test")
                 implementation("io.projectreactor:reactor-test")
-                implementation("org.springframework.security:spring-security-test")
-                implementation("org.assertj:assertj-core")
+                implementation("io.kotest:kotest-assertions-core:5.1.0")
             }
 
             targets {
@@ -73,4 +66,8 @@ testing {
 
 tasks.named("check") {
     dependsOn(testing.suites.named("integrationTest"))
+}
+
+tasks.getByName<BootRun>("bootRun") {
+    mainClass.set("io.github.carlomicieli.ApplicationKt")
 }

@@ -37,8 +37,8 @@ jobs:
       - name: Run the integration tests
         run: ./gradlew integrationTest
 
-      - name: Jacoco coverage report
-        run: ./gradlew jacocoTestReport
+      - name: Kover coverage report
+        run: ./gradlew koverMergedXmlReport
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2

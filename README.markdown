@@ -1,7 +1,5 @@
 # Spring Reactive Trains
 
-![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)
-
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 ![GitHub last commit](https://img.shields.io/github/last-commit/CarloMicieli/spring-reactive-trains)
 ![Build](https://github.com/CarloMicieli/spring-reactive-trains/workflows/build/badge.svg)
